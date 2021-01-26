@@ -1,4 +1,5 @@
 import './App.css';
+import Vote from './component/Vote'
 
 function App() {
   return (
@@ -7,14 +8,7 @@ function App() {
         <p>
           Participate a vote? :)
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Vote/>
       </header>
     </div>
   );

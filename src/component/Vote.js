@@ -10,15 +10,19 @@ function Vote() {
     useEffect(() => {
         if (!isLoaded) {
             fetch("/vote/1")
-                .then(res => res.json())
+                .then(res => {
+                    console.log("res: ", res)
+                    return res.json()
+                })
                 .then(
                     (result) => {
+                        console.log("result: ", result)
                         setIsLoaded(true)
                         setTopic(result.topic)
                         setOptions(result.options)
                     },
                     (err) => {
-                        console.log(err)
+                        console.log("err:", err)
                         setError("error")
                     }
                 )

@@ -14,11 +14,14 @@ function Vote() {
             fetch("/vote/" + id)
                 .then(res => {
                     if (res.ok) {
-                        const resJson = res.json()
-                        console.log("result: ", resJson)
-                        setIsLoaded(true)
-                        setTopic(resJson.topic)
-                        setOptions(resJson.options)
+                        res.json().then(
+                            result =>{
+                                console.log("result: ", result)
+                                setIsLoaded(true)
+                                setTopic(result.topic)
+                                setOptions(result.options)
+                            }
+                        )
                     } else {
                         console.log("response: ", res.text())
                         setError("error")

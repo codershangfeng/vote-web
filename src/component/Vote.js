@@ -13,21 +13,18 @@ function Vote() {
             console.log("id: ", id)
             fetch("/vote/" + id)
                 .then(res => {
-                    console.log("response: ", res)
-                    return res.json()
-                })
-                .then(
-                    (result) => {
-                        console.log("result: ", result)
+                    if (res.ok) {
+                        const resJson = res.json()
+                        console.log("result: ", resJson)
                         setIsLoaded(true)
-                        setTopic(result.topic)
-                        setOptions(result.options)
-                    },
-                    (err) => {
-                        console.log("err:", err)
+                        setTopic(resJson.topic)
+                        setOptions(resJson.options)
+                    } else {
+                        console.log("response: ", res.text())
                         setError("error")
                     }
-                )
+                })
+                
         }
     })
     // {"id":1,"options":["Innocence","Firework"],"topic":"Which song do you prefer?"}
